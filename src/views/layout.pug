@@ -4,7 +4,8 @@ html(lang="en")
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
     title Members Only
-    link(rel="stylesheet", href="/node_modules/bootstrap/dist/css/bootstrap.min.css") 
+    link(rel="stylesheet", href="/node_modules/bootstrap/dist/css/bootstrap.min.css")
+    script(src="/js/theme.js") 
   body.min-vh-100
     nav.navbar.navbar-expand-lg.fixed-top
       .container-fluid
@@ -19,10 +20,13 @@ html(lang="en")
               li.nav-item
                 a.nav-link(href='/profile') Profile
             li.nav-item
-              a.nav-link(href='') 
-                button.btn.btn-primary Join the club
+              if user.membership === "member"
+                a.nav-link(href='/create-post') 
+                  button.btn.btn-primary Create Post
+              else 
+                a.nav-link(href='/join-club') 
+                  button.btn.btn-primary Join the club
             
 
     block content
-    script(src="/js/theme.js")
     script(src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js")
