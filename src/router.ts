@@ -7,6 +7,8 @@ import {
   profileGet,
   logInPost,
   logOutPost,
+  getJoinClub,
+  postJoinClub,
 } from "./controllers/userController";
 import { getPosts } from "./controllers/postController";
 
@@ -41,5 +43,13 @@ router.get("/posts", getPosts);
 // GET profile
 
 router.get("/profile", profileGet);
+
+// GET join club form
+
+router.get("/join-club", getJoinClub);
+
+// POST join club form
+
+router.post("/join-club", postJoinClub);
 
 export default router;
