@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import path from "path";
 import mongoose from "mongoose";
 import createHttpError from "http-errors";
+import session from "express-session";
+import logger from "morgan";
 
 dotenv.config();
 
@@ -18,7 +20,7 @@ main().catch((err) => console.error("MongoDB connection error:", err));
 async function main() {
   try {
     if (!process.env.MONGODB_URI) {
-      console.error('MONGODB_URI not found in environment variables');
+      console.error("MONGODB_URI not found in environment variables");
       process.exit(1);
     }
     await mongoose.connect(process.env.MONGODB_URI);
@@ -31,6 +33,12 @@ async function main() {
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+
+// middleware
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req: Request, res: Response) => {
   res.render("index");
