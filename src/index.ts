@@ -105,7 +105,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const parentDir = path.resolve(__dirname, "..");
-app.use(express.static(path.join(parentDir, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 app.use("/node_modules", express.static(path.join(parentDir, "node_modules")));
 
 app.use("/", router);
