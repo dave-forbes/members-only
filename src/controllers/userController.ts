@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
-import { User } from "../models/user";
+import User from "../models/user";
 import passport from "passport";
 import bcrypt from "bcrypt";
 
