@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { getSignUp, postSignUp } from "./controllers/userController";
+import { signUpGet, signUpPost } from "./controllers/userController";
 import { getPosts } from "./controllers/postController";
 
 // GET home page
@@ -9,11 +9,11 @@ router.get("/", (req, res) => res.render("index"));
 
 // GET sign-up form
 
-router.get("/sign-up", getSignUp);
+router.get("/sign-up", signUpGet);
 
 // POST sign-up form
 
-router.post("/sign-up", postSignUp);
+router.post("/sign-up", signUpPost);
 
 // GET message page
 
