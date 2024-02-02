@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
-import User from "../models/user";
+import { User } from "../models/user";
+import passport from "passport";
 import bcrypt from "bcrypt";
 
 // display sign-up form
@@ -56,14 +57,14 @@ export const signUpPost = [
           lastName: req.body.lastName,
           email: req.body.email,
           password: hashedPassword,
-          member: "non-member",
+          membership: "non-member",
         });
 
         if (!errors.isEmpty()) {
           res.render("sign-up", { user: newUser, errors: errors.array() });
         } else {
           await newUser.save();
-          res.redirect("/posts");
+          res.redirect("/log-in");
         }
       });
     } catch (error) {
@@ -71,3 +72,23 @@ export const signUpPost = [
     }
   }),
 ];
+
+// display log in form
+
+export const logInGet = (req: Request, res: Response) => {
+  res.render("log-in");
+};
+
+// post log in form to log in user
+
+export const logInPost = passport.authenticate("local", {
+  successRedirect: "/profile",
+  failureRedirect: "/log-in",
+  failureFlash: true, // Enable flash messages for failures
+});
+
+// display profile
+
+export const profileGet = (req: Request, res: Response) => {
+  res.render("profile", { user: req.user });
+};
