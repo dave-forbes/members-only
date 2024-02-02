@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.text-center.justify-content-center.gap-3
+    if user 
+      h3 #{user.fullName}
+      if user.membership !== "non-member"
+        p Member: Yes
+      else 
+        p Member: No 
+      form(action="/log-out", method="POST")
+        button.btn.btn-primary(type="submit") Log out  
+    else
+      p Please sign up or login to access your profile.
+      .d-flex.gap-3
+        a(href='/log-in')
+          button.btn.btn-primary Login
+        a(href='/sign-up')
+          button.btn.btn-secondary Sign up
