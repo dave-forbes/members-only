@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import createHttpError from "http-errors";
 import session from "express-session";
 import logger from "morgan";
+import router from "./router";
 
 dotenv.config();
 
@@ -40,9 +41,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req: Request, res: Response) => {
-  res.render("index");
-});
+app.use("/", router);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
