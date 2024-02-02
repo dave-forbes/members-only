@@ -103,3 +103,27 @@ export const logOutPost = (req: Request, res: Response, next: NextFunction) => {
 export const profileGet = (req: Request, res: Response) => {
   res.render("profile", { user: req.user });
 };
+
+// display join club form
+
+export const getJoinClub = (req: Request, res: Response) => {
+  res.render("join-club", { user: req.user });
+};
+
+// post join club
+
+export const postJoinClub = [
+  body("secret")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Secret password is required"),
+  asyncHandler(async (req: Request, res: Response) => {
+    if (req.body.secret === "password") {
+      const user: any = req.user;
+      const userId = user._id;
+      await User.findByIdAndUpdate(userId, { membership: "member" });
+      res.redirect("/profile");
+    }
+  }),
+];
