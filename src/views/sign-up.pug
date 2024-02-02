@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.justify-content-center.text-center.gap-3
+    h2 Sign up
+    form.d-flex.flex-column.gap-3(method="POST")
+      .form-group
+        label(for="first-name") First Name
+        input.form-control(type="text", id="first-name", placeholder="Enter first name")
+
+      .form-group
+        label(for="last-name") Last Name
+        input.form-control(type="text", id="last-name", placeholder="Enter last name")
+
+      .form-group
+        label(for="email") Email address
+        input.form-control(type="email", id="email", aria-describedby="emailHelp", placeholder="Enter email")
+        small.form-text.text-muted We'll never share your email with anyone else.
+      
+      .form-group
+        label(for="password") Password
+        input.form-control(type="password", id="password", placeholder="Password")
+
+      .form-group
+        label(for="password-confirm") Confirm Password
+        input.form-control(type="password", id="password-confirm", placeholder="Confirm password")
+      
+      button.btn.btn-primary(type="submit") Submit

@@ -5,4 +5,8 @@ const router = express.Router();
 
 router.get("/", (req, res) => res.render("index"));
 
+// GET sign-up form
+
+router.get("/sign-up", (req, res) => res.render("sign-up"));
+
 export default router;
