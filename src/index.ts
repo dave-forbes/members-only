@@ -39,7 +39,10 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+
+const parentDir = path.resolve(__dirname, "..");
+app.use(express.static(path.join(parentDir, "public")));
+app.use("/node_modules", express.static(path.join(parentDir, "node_modules")));
 
 app.use("/", router);
 

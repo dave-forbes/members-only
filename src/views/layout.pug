@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    title Your Express App
+    link(rel="stylesheet", href="/node_modules/bootstrap/dist/css/bootstrap.min.css")
+  body.vh-100
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top
+      .container-fluid
+        a.navbar-brand( href='#') Members Only
+        button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbarSupportedContent
+          ul.navbar-nav.me-auto.mb-2.mb-lg-0
+            li.nav-item
+              a.nav-link.active(aria-current='page', href='#') Home
+            li.nav-item
+              a.nav-link(href='#') Messages
+            li.nav-item
+              a.nav-link(href='#') Profile 
+            
+
+    block content
+    script(src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js")
