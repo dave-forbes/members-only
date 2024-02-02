@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const MessageSchema = new Schema(
+const PostSchema = new Schema(
   {
     title: { type: String, required: true, maxLength: 100 },
     text: { type: String, required: true, maxLength: 500 },
@@ -11,6 +11,6 @@ const MessageSchema = new Schema(
   { timestamps: true }
 );
 
-const Message = mongoose.model("Message", MessageSchema);
+const Post = mongoose.model("Post", PostSchema);
 
-export default Message;
+export default Post;
