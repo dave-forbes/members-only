@@ -42,38 +42,30 @@ export const signUpPost = [
     return true;
   }),
 
-  (req: Request, res: Response, next: NextFunction) => {
-    bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-      try {
+  asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
         if (err) {
           throw err;
         }
-        req.body.password = hashedPassword;
-        next();
-      } catch (hashError) {
-        return next(hashError);
-      }
-    });
-  },
 
-  asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const errors = validationResult(req);
+        const errors = validationResult(req);
 
-      const newUser = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-        member: "non-member",
+        const newUser = new User({
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          password: hashedPassword,
+          member: "non-member",
+        });
+
+        if (!errors.isEmpty()) {
+          res.render("sign-up", { user: newUser, errors: errors.array() });
+        } else {
+          await newUser.save();
+          res.redirect("/posts");
+        }
       });
-
-      if (!errors.isEmpty()) {
-        res.render("sign-up", { user: newUser, errors: errors.array() });
-      } else {
-        await newUser.save();
-        res.redirect("/posts");
-      }
     } catch (error) {
       next(error);
     }
