@@ -1,6 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
-const Schema = mongoose.Schema;
+interface IUser extends Document {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  member: string;
+  fullName: string;
+  url: string;
+}
 
 const UserSchema = new Schema({
   firstName: { type: String, required: true, maxLength: 100 },
@@ -17,10 +25,14 @@ const UserSchema = new Schema({
   membership: { type: String, enum: ["member", "admin", "non-member"] },
 });
 
-UserSchema.virtual("fullName").get(function () {
+UserSchema.virtual("fullName").get(function (this: IUser) {
   return `${this.firstName} ${this.lastName}`;
 });
 
-const User = mongoose.model("User", UserSchema);
+UserSchema.virtual("url").get(function (this: IUser) {
+  return `/profile/${this._id}`;
+});
+
+const User = mongoose.model<IUser>("User", UserSchema);
 
 export default User;
