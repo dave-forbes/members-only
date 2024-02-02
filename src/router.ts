@@ -6,6 +6,7 @@ import {
   logInGet,
   profileGet,
   logInPost,
+  logOutPost,
 } from "./controllers/userController";
 import { getPosts } from "./controllers/postController";
 
@@ -27,10 +28,11 @@ router.get("/log-in", logInGet);
 
 // POST log in form
 
-router.post("/log-in", logInPost, (req, res) => {
-  console.log("Reached /log-in route");
-  res.redirect("/");
-});
+router.post("/log-in", logInPost);
+
+// POST log out form
+
+router.post("/log-out", logOutPost);
 
 // GET posts page
 

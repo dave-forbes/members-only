@@ -87,6 +87,17 @@ export const logInPost = passport.authenticate("local", {
   failureFlash: true, // Enable flash messages for failures
 });
 
+// post log out form to log user out
+
+export const logOutPost = (req: Request, res: Response, next: NextFunction) => {
+  req.logout((err: Error) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
+
 // display profile
 
 export const profileGet = (req: Request, res: Response) => {
