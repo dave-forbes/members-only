@@ -2,11 +2,12 @@ import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 import Post from "../models/post";
 import { NextFunction, Request, Response } from "express";
+import User from "../models/user";
 
 // GET list of posts
 
 const getPosts = asyncHandler(async (req, res, next) => {
-  const allPosts = await Post.find().exec();
+  const allPosts = await Post.find().populate("user").exec();
 
   res.render("posts", { posts: allPosts });
 });
