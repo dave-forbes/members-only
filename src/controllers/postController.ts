@@ -3,8 +3,14 @@ import Post from "../models/post";
 
 // GET list of posts
 
-export const getPosts = asyncHandler(async (req, res, next) => {
+const getPosts = asyncHandler(async (req, res, next) => {
   const allPosts = Post.find().exec();
 
   res.render("posts", { posts: allPosts });
 });
+
+const postController = {
+  getPosts,
+};
+
+export default postController;

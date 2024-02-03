@@ -7,13 +7,13 @@ import bcrypt from "bcrypt";
 
 // display sign-up form
 
-export const signUpGet = (req: Request, res: Response) => {
+const signUpGet = (req: Request, res: Response) => {
   res.render("sign-up");
 };
 
 // post sign-up form to create user
 
-export const signUpPost = [
+const signUpPost = [
   body("firstName")
     .trim()
     .isLength({ min: 1 })
@@ -75,13 +75,13 @@ export const signUpPost = [
 
 // display log in form
 
-export const logInGet = (req: Request, res: Response) => {
+const logInGet = (req: Request, res: Response) => {
   res.render("log-in");
 };
 
 // post log in form to log in user
 
-export const logInPost = passport.authenticate("local", {
+const logInPost = passport.authenticate("local", {
   successRedirect: "/profile",
   failureRedirect: "/log-in",
   failureFlash: true, // Enable flash messages for failures
@@ -89,7 +89,7 @@ export const logInPost = passport.authenticate("local", {
 
 // post log out form to log user out
 
-export const logOutPost = (req: Request, res: Response, next: NextFunction) => {
+const logOutPost = (req: Request, res: Response, next: NextFunction) => {
   req.logout((err: Error) => {
     if (err) {
       return next(err);
@@ -100,19 +100,19 @@ export const logOutPost = (req: Request, res: Response, next: NextFunction) => {
 
 // display profile
 
-export const profileGet = (req: Request, res: Response) => {
+const profileGet = (req: Request, res: Response) => {
   res.render("profile", { user: req.user });
 };
 
 // display join club form
 
-export const getJoinClub = (req: Request, res: Response) => {
+const getJoinClub = (req: Request, res: Response) => {
   res.render("join-club", { user: req.user });
 };
 
 // post join club
 
-export const postJoinClub = [
+const postJoinClub = [
   body("secret")
     .trim()
     .isLength({ min: 1 })
@@ -127,3 +127,16 @@ export const postJoinClub = [
     }
   }),
 ];
+
+const userController = {
+  signUpGet,
+  signUpPost,
+  logInGet,
+  profileGet,
+  logInPost,
+  logOutPost,
+  getJoinClub,
+  postJoinClub,
+};
+
+export default userController;
