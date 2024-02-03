@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.justify-content-center.text-center.gap-3
+    h2 Create Post
+    form.d-flex.flex-column.gap-3(method="POST")
+      .form-group
+        label(for="title") Title
+        input.form-control(value=(post ? post.title : ""), type="text", id="title", placeholder="Enter post title", name="title")
+      .form-group
+        label(for="text") Text 
+        textarea.form-control(placeholder='Enter post text', id=-'text' name="text", required, cols="30", rows="5") #{post && post.text}
+      button.btn.btn-primary(type="submit") Submit
+      if errors
+        div
+          each error in errors
+            p.text-danger #{error.msg}
