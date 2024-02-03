@@ -47,4 +47,8 @@ router.post("/join-club", userController.postJoinClub);
 
 router.get("/create-post", postController.getCreatePost);
 
+// POST create post form
+
+router.post("/create-post", postController.postCreatePost);
+
 export default router;
