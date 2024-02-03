@@ -7,7 +7,7 @@ html(lang="en")
     link(rel="stylesheet", href="/node_modules/bootstrap/dist/css/bootstrap.min.css")
     script(src="/js/theme.js") 
   body.min-vh-100
-    nav.navbar.navbar-expand-lg.fixed-top
+    nav.navbar.navbar-expand-lg.fixed-top.bg-secondary-subtle
       .container-fluid
         a.navbar-brand( href='/') Members Only
         button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
@@ -20,12 +20,16 @@ html(lang="en")
               li.nav-item
                 a.nav-link(href='/profile') Profile
             li.nav-item
-              if user.membership === "member"
-                a.nav-link(href='/create-post') 
-                  button.btn.btn-primary Create Post
+              if user
+                if user.membership !== "non-member"
+                  a.nav-link(href='/create-post') 
+                    button.btn.btn-primary Create Post
+                else 
+                  a.nav-link(href='/join-club') 
+                    button.btn.btn-primary Join the club
               else 
                 a.nav-link(href='/join-club') 
-                  button.btn.btn-primary Join the club
+                    button.btn.btn-primary Join the club
             
 
     block content
