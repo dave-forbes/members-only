@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 const PostSchema = new Schema(
   {
-    title: { type: String, required: true, maxLength: 100 },
-    text: { type: String, required: true, maxLength: 500 },
+    title: { type: String, required: true, maxlength: 100 },
+    text: { type: String, required: true, maxlength: 500 },
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
   { timestamps: true }
