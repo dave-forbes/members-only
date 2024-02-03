@@ -2,4 +2,11 @@ extends layout
 
 block content
   .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.justify-content-center.gap-3
-    p posts here!
+    if posts
+      each post in posts
+       .container-fluid
+        h4 #{post.title}
+        p #{post.text}
+    else 
+      p No posts.
+        
