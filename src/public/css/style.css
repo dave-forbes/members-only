@@ -1,5 +1,5 @@
 .form-width {
-  max-width: 300px 
+  max-width: 300px
 }
 
 .posts {
@@ -7,10 +7,25 @@
   padding-top: 8rem;
 }
 
+@media (min-width: 991px) {
+  .welcome-content h1 {
+    font-size: 5rem;
+  }
+
+  .welcome-content p {
+    font-size: 2rem;
+  }
+
+  .welcome-links {
+    margin-top: 2rem;
+  }
+}
+
 @media (max-width: 991px) {
   .reponsive-flex {
     flex-direction: column;
   }
+
   .posts {
     padding-top: 5rem;
   }
