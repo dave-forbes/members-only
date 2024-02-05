@@ -8,22 +8,27 @@ interface IUser extends Document {
   member: string;
   fullName: string;
   url: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-const UserSchema = new Schema({
-  firstName: { type: String, required: true, maxLength: 100 },
-  lastName: { type: String, required: true, maxLength: 100 },
-  email: {
-    type: String,
-    required: true,
-    maxLength: 100,
-    unique: true,
-    index: true,
-    lowercase: true,
+const UserSchema = new Schema(
+  {
+    firstName: { type: String, required: true, maxLength: 100 },
+    lastName: { type: String, required: true, maxLength: 100 },
+    email: {
+      type: String,
+      required: true,
+      maxLength: 100,
+      unique: true,
+      index: true,
+      lowercase: true,
+    },
+    password: { type: String, required: true, maxLength: 100 },
+    membership: { type: String, enum: ["member", "admin", "non-member"] },
   },
-  password: { type: String, required: true, maxLength: 100 },
-  membership: { type: String, enum: ["member", "admin", "non-member"] },
-});
+  { timestamps: true }
+);
 
 UserSchema.virtual("fullName").get(function (this: IUser) {
   return `${this.firstName} ${this.lastName}`;
