@@ -5,7 +5,7 @@ import postController from "./controllers/postController";
 
 // GET home page
 
-router.get("/", (req, res) => res.render("index"));
+router.get("/", (req, res) => res.render("index", { user: req.user }));
 
 // GET sign-up form
 
