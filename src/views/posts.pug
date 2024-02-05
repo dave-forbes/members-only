@@ -1,22 +1,22 @@
 extends layout
 
 block content
-  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.justify-content-center.gap-3
+  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.justify-content-center.gap-3.posts-width
     h1 Posts
     if posts
       each post in posts
-       .card.w-50
+       .card.w-100.card-color
         .card-body
           h6.card-title #{post.title}
           h4.card-text.text-md #{post.text}
-          .d-flex.gap-3.align-items-center
+          .d-flex.gap-3.align-items-center.justify-content-end
             p.text-secondary.m-0 Last-Updated: #{post.updatedAt.toLocaleString('en-GB', {timeZone: 'UTC'})}
             if user
               p.text-secondary.m-0 By:
                 span   
                   if user.membership !== "non-member"
                     a.card-link(href=post.user.url) #{post.user.fullName}
-              if user.membership === "member"
+              if user.membership === "admin"
                 a(href='/delete-post')
                   button.btn.btn-sm.btn-danger Delete Post
     else 
