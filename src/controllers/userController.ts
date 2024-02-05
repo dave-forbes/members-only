@@ -16,10 +16,16 @@ const signUpGet = (req: Request, res: Response) => {
 const signUpPost = [
   body("firstName")
     .trim()
+    .customSanitizer((value) => {
+      return value.replace(/[^a-zA-Z0-9\s\_\-']/g, "");
+    })
     .isLength({ min: 1 })
     .withMessage("First name is required"),
   body("lastName")
     .trim()
+    .customSanitizer((value) => {
+      return value.replace(/[^a-zA-Z0-9\s\_\-']/g, "");
+    })
     .isLength({ min: 1 })
     .withMessage("Last name is required"),
   body("email")
