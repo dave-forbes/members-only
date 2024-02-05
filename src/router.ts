@@ -43,6 +43,14 @@ router.get("/join-club", userController.getJoinClub);
 
 router.post("/join-club", userController.postJoinClub);
 
+// GET become admin form
+
+router.get("/become-admin", userController.getAdminForm);
+
+// POST become admin form
+
+router.post("/become-admin", userController.postAdminForm);
+
 // GET create post form
 
 router.get("/create-post", postController.getCreatePost);
