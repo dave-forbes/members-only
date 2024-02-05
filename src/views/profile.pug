@@ -1,11 +1,13 @@
 extends layout 
 
 block content 
-  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.text-center.justify-content-center.gap-3
+  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.text-center.justify-content-center.gap-3.content
     if user 
       h3 #{user.fullName}
       p Membership: #{user.membership}
-      .d-flex.gap-3   
+      p Joined: #{`${user.createdAt.toLocaleString("en-gb", {month:"short"})}, ${user.createdAt.getFullYear()}`}
+      p Number of posts: #{postCount}
+      .d-flex.gap-3.links   
         form(action="/log-out", method="POST")
           button.btn.btn-primary(type="submit") Log out
         if user.membership === "non-member"
@@ -16,7 +18,7 @@ block content
             button.btn.btn-danger Become admin 
     else
       p Please sign up or login to access your profile.
-      .d-flex.gap-3
+      .d-flex.gap-3.links
         a(href='/log-in')
           button.btn.btn-primary Login
         a(href='/sign-up')
