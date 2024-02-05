@@ -2,12 +2,21 @@ extends layout
 
 block content
   .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.justify-content-center.text-center.gap-3
-    h1 Welcome to members only.
-    .d-flex.gap-3
-      a(href='/log-in')
-        button.btn.btn-primary Login
-      a(href='/sign-up')
-        button.btn.btn-secondary Sign up
-    p.m-0 or 
-    a(href='/posts')
-      button.btn.btn-primary See posts
+    if user 
+      h1 Welcome to back members only#{`, ${user.firstName}`}.
+      .d-flex.gap-3
+        a(href="/profile")
+          button.btn.btn-primary Your Profile
+        a(href='/posts')
+          button.btn.btn-success See posts
+        form(action="/log-out", method="POST")
+          button.btn.btn-danger(type="submit") Log out 
+    else
+      h1 Welcome to members only.
+      .d-flex.gap-3
+        a(href='/log-in')
+          button.btn.btn-primary Login
+        a(href='/posts')
+          button.btn.btn-success See posts
+        a(href='/sign-up')
+          button.btn.btn-danger Sign up
