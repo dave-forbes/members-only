@@ -19,6 +19,9 @@ block content
         if messages.error
             p.text-danger #{messages.error[0]}
       else 
-        p You need to be logged in to join our club. 
-        a(href='/log-in')
-          button.btn.btn-primary Login
+        p You need to be logged in to join our club.
+        .d-flex.gap-3 
+          a(href='/log-in')
+            button.btn.btn-primary Login
+          a(href='/sign-up')
+            button.btn.btn-danger Sign up
