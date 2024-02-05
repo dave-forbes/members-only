@@ -125,11 +125,49 @@ const postJoinClub = [
     .escape()
     .withMessage("Secret password is required"),
   asyncHandler(async (req: Request, res: Response) => {
+    const errors = validationResult(req);
     if (req.body.secret === "password") {
       const user: any = req.user;
       const userId = user._id;
       await User.findByIdAndUpdate(userId, { membership: "member" });
       res.redirect("/profile");
+    } else {
+      res.render("join-club", {
+        user: req.user,
+        errors: errors.array(),
+        passwordError: "Incorrect password. The password is 'password'",
+      });
+    }
+  }),
+];
+
+// display become admin form
+
+const getAdminForm = (req: Request, res: Response) => {
+  res.render("become-admin", { user: req.user });
+};
+
+// post become admin form
+
+const postAdminForm = [
+  body("admin")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Admin password is required"),
+  asyncHandler(async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (req.body.admin === "admin") {
+      const user: any = req.user;
+      const userId = user._id;
+      await User.findByIdAndUpdate(userId, { membership: "admin" });
+      res.redirect("/");
+    } else {
+      res.render("become-admin", {
+        user: req.user,
+        errors: errors.array(),
+        passwordError: "Incorrect password. The password is 'admin'",
+      });
     }
   }),
 ];
@@ -143,6 +181,8 @@ const userController = {
   logOutPost,
   getJoinClub,
   postJoinClub,
+  getAdminForm,
+  postAdminForm,
 };
 
 export default userController;
