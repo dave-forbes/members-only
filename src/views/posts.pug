@@ -7,10 +7,18 @@ block content
       each post in posts
        .card.w-50
         .card-body
-          h5.card-title #{post.title}
-          p.card-text #{post.text}
-          a.card-link(href=post.user.url) #{post.user.fullName}
-          a.card-link(href="#") Delete
+          h6.card-title #{post.title}
+          h4.card-text.text-md #{post.text}
+          .d-flex.gap-3.align-items-center
+            p.text-secondary.m-0 Last-Updated: #{post.updatedAt.toLocaleString('en-GB', {timeZone: 'UTC'})}
+            if user
+              p.text-secondary.m-0 By:
+                span   
+                  if user.membership !== "non-member"
+                    a.card-link(href=post.user.url) #{post.user.fullName}
+              if user.membership === "member"
+                a(href='/delete-post')
+                  button.btn.btn-sm.btn-danger Delete Post
     else 
       p No posts.
         
