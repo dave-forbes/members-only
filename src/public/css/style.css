@@ -1,0 +1,17 @@
+.form-width {
+  max-width: 300px 
+}
+
+.posts-width {
+  max-width: 800px
+}
+
+@media (max-width: 991px) {
+  .post-profile {
+    flex-direction: column;
+  }
+}
+
+.card-color {
+  background-color: #fafafa;
+}
