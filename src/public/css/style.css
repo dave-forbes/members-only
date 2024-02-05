@@ -8,11 +8,21 @@
 }
 
 @media (max-width: 991px) {
-  .post-profile {
+  .reponsive-flex {
     flex-direction: column;
   }
   .posts {
     padding-top: 5rem;
+  }
+
+  .spacer {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .welcome-links {
+    flex-direction: column;
   }
 }
 

@@ -15,27 +15,27 @@ html(lang="en")
           span.navbar-toggler-icon
         .collapse.navbar-collapse#navbarSupportedContent
           ul.navbar-nav.mb-2.mb-lg-0.align-items-center.w-100.justify-content-between
-            .d-flex.post-profile
+            .d-flex.reponsive-flex 
               li.nav-item
                 a.nav-link(href='/posts') Posts
               li.nav-item
                 a.nav-link(href='/profile') Profile
-            li.nav-item.d-flex.gap-3.align-items-center
+            li.nav-item.d-flex.gap-3.align-items-center.reponsive-flex.spacer 
               if user
                 if user.membership !== "non-member"
                   p.text-secondary.m-0 Logged in as #{user.fullName}, #{user.membership}.
                   form(action="/log-out", method="POST")
-                    button.btn.btn-sm.btn-primary(type="submit") Log out
+                    button.btn.btn-primary(type="submit") Log out
                   a.nav-link(href='/create-post') 
                     button.btn.btn-danger Create Post
                 else
                   form(action="/log-out", method="POST")
-                    button.btn.btn-sm.btn-primary(type="submit") Log out 
+                    button.btn.btn-primary(type="submit") Log out 
                   a.nav-link(href='/join-club') 
                     button.btn.btn-danger Join the club
               else
                 a.nav-link(href='/log-in') 
-                    button.btn.btn-sm.btn-primary(type="submit") Log in 
+                    button.btn.btn-primary(type="submit") Log in 
                 a.nav-link(href='/join-club') 
                     button.btn.btn-danger Join the club
             
