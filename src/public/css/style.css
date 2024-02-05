@@ -2,13 +2,17 @@
   max-width: 300px 
 }
 
-.posts-width {
-  max-width: 800px
+.posts {
+  max-width: 800px;
+  padding-top: 8rem;
 }
 
 @media (max-width: 991px) {
   .post-profile {
     flex-direction: column;
+  }
+  .posts {
+    padding-top: 5rem;
   }
 }
 
