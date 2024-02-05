@@ -12,9 +12,9 @@ block content
           .d-flex.gap-3.align-items-center.justify-content-end
             p.text-secondary.m-0 Last-Updated: #{post.updatedAt.toLocaleString('en-GB', {timeZone: 'UTC'})}
             if user
-              p.text-secondary.m-0 by   
-                if user.membership !== "non-member"
-                  span #{post.user.fullName}
+              if user.membership !== "non-member"
+                  p.text-secondary.m-0 by 
+                    span #{post.user.fullName}
               if user.membership === "admin"
                 a(href='/delete-post')
                   button.btn.btn-sm.btn-danger Delete Post
