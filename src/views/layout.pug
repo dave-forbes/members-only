@@ -24,14 +24,20 @@ html(lang="en")
               if user
                 if user.membership !== "non-member"
                   p.text-secondary.m-0 Logged in as #{user.fullName}, #{user.membership}.
+                  form(action="/log-out", method="POST")
+                    button.btn.btn-sm.btn-primary(type="submit") Log out
                   a.nav-link(href='/create-post') 
-                    button.btn.btn-primary Create Post
-                else 
+                    button.btn.btn-danger Create Post
+                else
+                  form(action="/log-out", method="POST")
+                    button.btn.btn-sm.btn-primary(type="submit") Log out 
                   a.nav-link(href='/join-club') 
-                    button.btn.btn-primary Join the club
-              else 
+                    button.btn.btn-danger Join the club
+              else
+                a.nav-link(href='/log-in') 
+                    button.btn.btn-sm.btn-primary(type="submit") Log in 
                 a.nav-link(href='/join-club') 
-                    button.btn.btn-primary Join the club
+                    button.btn.btn-danger Join the club
             
 
     block content
