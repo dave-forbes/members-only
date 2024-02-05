@@ -27,12 +27,13 @@ html(lang="en")
                   form(action="/log-out", method="POST")
                     button.btn.btn-primary(type="submit") Log out
                   a.nav-link(href='/create-post') 
-                    button.btn.btn-danger Create Post
+                    button.btn.btn-success Create Post
                 else
+                  p.text-secondary.m-0 Logged in as #{user.fullName}, #{user.membership}.
                   form(action="/log-out", method="POST")
                     button.btn.btn-primary(type="submit") Log out 
                   a.nav-link(href='/join-club') 
-                    button.btn.btn-danger Join the club
+                    button.btn.btn-success Join the club
               else
                 a.nav-link(href='/log-in') 
                     button.btn.btn-primary(type="submit") Log in 
