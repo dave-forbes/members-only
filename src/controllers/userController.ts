@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 import User from "../models/user";
+import Post from "../models/post";
 import passport from "passport";
 import bcrypt from "bcrypt";
 
@@ -106,9 +107,10 @@ const logOutPost = (req: Request, res: Response, next: NextFunction) => {
 
 // display profile
 
-const profileGet = (req: Request, res: Response) => {
-  res.render("profile", { user: req.user });
-};
+const profileGet = asyncHandler(async (req: Request, res: Response) => {
+  const postCount = await Post.find({ user: req.user }).exec();
+  res.render("profile", { user: req.user, postCount: postCount.length });
+});
 
 // display join club form
 
