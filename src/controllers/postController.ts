@@ -9,7 +9,9 @@ import User from "../models/user";
 const getPosts = asyncHandler(async (req, res, next) => {
   const allPosts = await Post.find().populate("user").exec();
 
-  res.render("posts", { posts: allPosts });
+  const allPostsReversed = allPosts.reverse();
+
+  res.render("posts", { posts: allPostsReversed, user: req.user });
 });
 
 // GET create post form
