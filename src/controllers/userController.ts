@@ -82,7 +82,7 @@ const logInGet = (req: Request, res: Response) => {
 // post log in form to log in user
 
 const logInPost = passport.authenticate("local", {
-  successRedirect: "/profile",
+  successRedirect: "/",
   failureRedirect: "/log-in",
   failureFlash: true, // Enable flash messages for failures
 });
@@ -94,7 +94,7 @@ const logOutPost = (req: Request, res: Response, next: NextFunction) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/");
+    res.render("index", { user: req.user });
   });
 };
 
