@@ -19,9 +19,10 @@ html(lang="en")
                 a.nav-link(href='/posts') Posts
               li.nav-item
                 a.nav-link(href='/profile') Profile
-            li.nav-item
+            li.nav-item.d-flex.gap-3.align-items-center
               if user
                 if user.membership !== "non-member"
+                  p.text-secondary.m-0 Logged in as #{user.fullName}, #{user.membership}.
                   a.nav-link(href='/create-post') 
                     button.btn.btn-primary Create Post
                 else 
