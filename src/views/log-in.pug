@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.text-center.justify-content-center.gap-3
+  .container.d-flex.flex-column.align-items-center.min-vh-100.text-center.justify-content-center.gap-3
       h2 Log in
-      form.d-flex.flex-column.gap-3.w-25(method="POST", action='/log-in')
+      form.form-width.mb-4.d-flex.flex-column.gap-3.w-100(method="POST", action='/log-in')
         .form-group
           label(for="email") Email address
           input.form-control(value=(user ? user.email : ""), type="email", id="email", placeholder="Enter email", name="username")
@@ -22,3 +22,7 @@ block content
           pre #{error.stack}
         if messages.error
             p.text-danger #{messages.error[0]}
+      .d-flex.gap-3.align-items-center
+        p.m-0 Not signed up yet? 
+        a(href='/sign-up')
+            button.btn.btn-danger Sign up
