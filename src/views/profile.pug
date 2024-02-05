@@ -7,13 +7,20 @@ block content
       if user.membership !== "non-member"
         p Member: Yes
       else 
-        p Member: No 
-      form(action="/log-out", method="POST")
-        button.btn.btn-primary(type="submit") Log out  
+        p Member: No
+      .d-flex.gap-3   
+        form(action="/log-out", method="POST")
+          button.btn.btn-primary(type="submit") Log out
+        if user.membership === "non-member"
+          a(href='/posts')
+            button.btn.btn-success Become member
+        if user.membership === "member"
+          a(href='/posts')
+            button.btn.btn-danger Become admin 
     else
       p Please sign up or login to access your profile.
       .d-flex.gap-3
         a(href='/log-in')
           button.btn.btn-primary Login
         a(href='/sign-up')
-          button.btn.btn-secondary Sign up
+          button.btn.btn-danger Sign up
