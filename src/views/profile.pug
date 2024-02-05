@@ -4,10 +4,7 @@ block content
   .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.text-center.justify-content-center.gap-3
     if user 
       h3 #{user.fullName}
-      if user.membership !== "non-member"
-        p Member: Yes
-      else 
-        p Member: No
+      p Membership: #{user.membership}
       .d-flex.gap-3   
         form(action="/log-out", method="POST")
           button.btn.btn-primary(type="submit") Log out
@@ -15,7 +12,7 @@ block content
           a(href='/posts')
             button.btn.btn-success Become member
         if user.membership === "member"
-          a(href='/posts')
+          a(href='/become-admin')
             button.btn.btn-danger Become admin 
     else
       p Please sign up or login to access your profile.
