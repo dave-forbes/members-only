@@ -2,21 +2,29 @@
   max-width: 300px
 }
 
+.create-post {
+  max-width: 600px;
+}
+
 .posts {
   max-width: 800px;
   padding-top: 8rem;
 }
 
 @media (min-width: 991px) {
-  .welcome-content h1 {
+  .content h1 {
     font-size: 5rem;
   }
 
-  .welcome-content p {
+  .content h3 {
+    font-size: 3rem;
+  }
+
+  .content p {
     font-size: 2rem;
   }
 
-  .welcome-links {
+  .links {
     margin-top: 2rem;
   }
 }
