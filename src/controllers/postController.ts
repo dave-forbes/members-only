@@ -17,7 +17,7 @@ const getPosts = asyncHandler(async (req, res, next) => {
 // GET create post form
 
 const getCreatePost = (req: Request, res: Response, next: NextFunction) => {
-  res.render("create-post");
+  res.render("create-post", { user: req.user });
 };
 
 // POST create post form
