@@ -25,14 +25,18 @@ const getCreatePost = (req: Request, res: Response, next: NextFunction) => {
 const postCreatePost = [
   body("title")
     .trim()
-    .escape()
-    .isLength({ min: 1 })
-    .withMessage("Title is required"),
+    .customSanitizer((value) => {
+      return value.replace(/[^a-zA-Z0-9\s\_\-']/g, "");
+    }),
   body("text")
     .trim()
-    .escape()
+    .customSanitizer((value) => {
+      return value.replace(/[^a-zA-Z0-9\s\_\-']/g, "");
+    })
     .isLength({ min: 1 })
-    .withMessage("Text is required"),
+    .withMessage("Text is required")
+    .isLength({ max: 500 })
+    .withMessage("Character limit exceeded"),
 
   asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
@@ -46,7 +50,11 @@ const postCreatePost = [
     });
 
     if (!errors.isEmpty()) {
-      res.render("create-post", { post: newPost, errors: errors.array() });
+      res.render("create-post", {
+        post: newPost,
+        errors: errors.array(),
+        user: req.user,
+      });
     } else {
       await newPost.save();
       res.redirect("/posts");
