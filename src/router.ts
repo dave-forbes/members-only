@@ -59,4 +59,8 @@ router.get("/create-post", postController.getCreatePost);
 
 router.post("/create-post", postController.postCreatePost);
 
+// Delete post
+
+router.post("/delete-post", postController.postDeletePost);
+
 export default router;

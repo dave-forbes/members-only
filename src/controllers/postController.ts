@@ -62,10 +62,18 @@ const postCreatePost = [
   }),
 ];
 
+const postDeletePost = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    await Post.findByIdAndDelete(req.body.postid);
+    res.redirect("/posts");
+  }
+);
+
 const postController = {
   getPosts,
   getCreatePost,
   postCreatePost,
+  postDeletePost,
 };
 
 export default postController;
