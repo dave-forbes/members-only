@@ -23,3 +23,18 @@ function countCharacters() {
 
   return (count.innerText = `Characters left: ${500 - countLength}`);
 }
+
+const cards = document.querySelectorAll(".card");
+
+cards.forEach((card) => {
+  card.addEventListener("click", (e) => {
+    if (e.target.classList.contains("open")) {
+      const dialogue = e.target.previousSibling;
+      dialogue.showModal();
+    }
+    if (e.target.classList.contains("close")) {
+      const dialogue = e.target.parentElement;
+      dialogue.close();
+    }
+  });
+});
