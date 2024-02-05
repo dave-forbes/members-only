@@ -13,11 +13,8 @@ block content
           div
             each error in errors
               p.text-danger #{error.msg}
-        if error
-          h2= error.status
-          pre #{error.stack}
-        if messages.error
-            p.text-danger #{messages.error[0]}
+        if passwordError 
+          p.text-danger #{passwordError}
       else 
         p You need to be logged in to join our club.
         .d-flex.gap-3 
