@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.justify-content-center.text-center.gap-3.welcome-content
+  .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.justify-content-center.text-center.gap-3.content
     if user 
       h1 Welcome to members only #{user.firstName}.
       p.m-0 All posts are public.
-      p.m-0 Only members can create or view the author of posts.
+      p.m-0 Only members can create and view the author of posts.
       p.m-0 Only admins can delete posts.
-      .d-flex.gap-3.welcome-links
+      .d-flex.gap-3.links
         a(href="/profile")
           button.btn.btn-primary Your Profile
         a(href='/posts')
@@ -17,9 +17,9 @@ block content
     else
       h1 Welcome to members only.
       p.m-0 All posts are public.
-      p.m-0 Only members can create or view the author of posts.
+      p.m-0 Only members can create and view the author of posts.
       p.m-0 Only admins can delete posts.
-      .d-flex.gap-3.welcome-links
+      .d-flex.gap-3.links
         a(href='/log-in')
           button.btn.btn-primary Login
         a(href='/posts')
