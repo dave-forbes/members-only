@@ -10,8 +10,8 @@ block content
           h6.card-title #{post.title}
           h4.card-text.text-md #{post.text}
           .d-flex.gap-3.align-items-center.justify-content-end
-            p.text-secondary.m-0 Created: #{post.createdAt.toLocaleString('en-GB', {timeZone: 'UTC'})}
             if user
+              p.text-secondary.m-0 Created: #{post.createdAt.toLocaleString('en-GB', {timeZone: 'UTC'})}
               if user.membership !== "non-member"
                   p.text-secondary.m-0 by 
                     span #{post.user.fullName}
