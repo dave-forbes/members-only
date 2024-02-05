@@ -2,7 +2,6 @@ import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 import Post from "../models/post";
 import { NextFunction, Request, Response } from "express";
-import User from "../models/user";
 
 // GET list of posts
 
@@ -56,7 +55,17 @@ const postCreatePost = [
         user: req.user,
       });
     } else {
-      await newPost.save();
+      try {
+        await newPost.save();
+      } catch (error) {
+        console.error("Error saving post to database:", error);
+        res.render("create-post", {
+          post: newPost,
+          errors: [{ msg: "Unable to save the post. Please try again later." }],
+          user: req.user,
+        });
+      }
+
       res.redirect("/posts");
     }
   }),
