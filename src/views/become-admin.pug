@@ -4,7 +4,7 @@ block content
   .container-fluid.d-flex.flex-column.align-items-center.min-vh-100.text-center.justify-content-center.gap-3
       h2 Become an admin
       if user && user.membership !== "non-member" 
-        form.d-flex.flex-column.gap-3.w-25(method="POST")
+        form.form-width.d-flex.flex-column.gap-3(method="POST")
           .form-group
             label(for="admin-password") admin assword
             input.form-control(type="text", id="admin-password", placeholder="Enter admin password", name="admin")
