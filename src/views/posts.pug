@@ -3,9 +3,10 @@ extends layout
 block content
   .container-fluid.d-flex.flex-column.align-items-center.gap-3.posts
     h1 Posts
-    if user.membership !== "non-member"
-      a.nav-link(href='/create-post') 
-        button.btn.btn-success Create Post
+    if user
+      if user.membership !== "non-member"
+        a.nav-link(href='/create-post') 
+          button.btn.btn-success Create Post
     if posts
       each post in posts
        .card.w-100.card-color
