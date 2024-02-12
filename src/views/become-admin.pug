@@ -6,7 +6,7 @@ block content
       if user && user.membership !== "non-member" 
         form.form-width.d-flex.flex-column.gap-3(method="POST")
           .form-group
-            label(for="admin-password") admin assword
+            label(for="admin-password") Admin password
             input.form-control(type="text", id="admin-password", placeholder="Enter admin password", name="admin")
           button.btn.btn-primary(type="submit") Submit 
         if errors
