@@ -33,7 +33,7 @@ cards.forEach((card) => {
       dialogue.showModal();
     }
     if (e.target.classList.contains("close")) {
-      const dialogue = e.target.parentElement;
+      const dialogue = e.target.parentElement.parentElement;
       dialogue.close();
     }
   });
